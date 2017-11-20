@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.OracleClient;
+using System.Data.OleDb;
 using System.Data;
 
 namespace BekUtils.Database
 {
-    internal class OracleDataProvider : IDataProvider
+    internal class OleDbDataProvider : IDataProvider
     {
-        private OracleConnection connection;
-        private OracleCommand command;
+        private OleDbConnection connection;
+        private OleDbCommand command;
         private string connectionString;
-        public OracleDataProvider() : this(null)
+
+        public OleDbDataProvider() : this(null)
         {
             //
             // TODO: 在此处添加构造函数逻辑
             //
         }
 
-        public OracleDataProvider(string connectionString)
+        public OleDbDataProvider(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -31,9 +32,6 @@ namespace BekUtils.Database
             }
         }
 
-        /// <summary>
-        /// Oracle 连接字符串 "User Id=southfence;Data Source=FENCEORA;Password=southfence;Persist Security Info=true;"    
-        /// </summary>
         public string ConnectionString
         {
             get
@@ -47,16 +45,16 @@ namespace BekUtils.Database
         }
 
         /// <summary>
-        /// 返回一个带有连接字符串的Oracle Connection.
+        /// 返回一个带有连接字符串的SQLSERVER Connection.
         /// </summary>
         /// <returns>OracleConnection</returns>
-        private OracleConnection GetOracleConnection()
+        private OleDbConnection GetOleDbConnection()
         {
             try
             {
-                return new OracleConnection(this.connectionString);
+                return new OleDbConnection(this.connectionString);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 return null;
             }
@@ -68,27 +66,30 @@ namespace BekUtils.Database
         /// <param name="Sql">UPDATE、INSERT 和 DELETE 语句</param>
         public int ExecuteNonQuery(string sql)
         {
-            using (connection = this.GetOracleConnection())
+            using (connection = this.GetOleDbConnection())
             {
                 if (connection == null)
                     return -1;
                 int rv = -1;
+
                 try
                 {
-                    if (connection.State == System.Data.ConnectionState.Closed)
+                    if (System.Data.ConnectionState.Closed == connection.State)
+                    {
                         connection.Open();
+                    }
 
-                    command = new OracleCommand();
+                    command = new OleDbCommand();
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText = sql;
                     rv = command.ExecuteNonQuery();
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    //oracleTransaction.Rollback();
                     rv = -1;
                 }
+
                 return rv;
             }
         }
@@ -100,22 +101,22 @@ namespace BekUtils.Database
         /// <returns>数据集 DataSet</returns>
         public DataSet RetriveDataSet(string sql)
         {
-            if (sql == null || sql == string.Empty)
+            if (string.IsNullOrEmpty(sql))
             {
                 return null;
             }
-            using (connection = this.GetOracleConnection())
+            using (connection = this.GetOleDbConnection())
             {
                 if (connection == null)
                     return null;
-                using (OracleDataAdapter da = new OracleDataAdapter(sql, connection))
+                using (OleDbDataAdapter da = new OleDbDataAdapter(sql, connection))
                 {
                     DataSet ds = new DataSet();
                     try
                     {
                         da.Fill(ds);
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
                     }
                     return ds;
@@ -126,8 +127,9 @@ namespace BekUtils.Database
         public void Dispose()
         {
             this.connectionString = null;
-            this.command.Dispose();
+            //this.sqlCommand.Dispose();
             this.connection.Dispose();
         }
+
     }
 }

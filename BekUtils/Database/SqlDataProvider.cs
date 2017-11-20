@@ -9,8 +9,8 @@ namespace BekUtils.Database
 {
     internal class SqlDataProvider : IDataProvider
     {
-        private SqlConnection sqlConnection;
-        private SqlCommand sqlCommand;
+        private SqlConnection connection;
+        private SqlCommand command;
         private string connectionString;
 
         public SqlDataProvider() : this(null)
@@ -69,31 +69,24 @@ namespace BekUtils.Database
         /// <param name="Sql">UPDATE、INSERT 和 DELETE 语句</param>
         public int ExecuteNonQuery(string sql)
         {
-            using (sqlConnection = this.GetSqlServerConnection())
+            using (connection = this.GetSqlServerConnection())
             {
-                if (sqlConnection == null)
+                if (connection == null)
                     return -1;
                 int rv = -1;
 
-                //SqlTransaction sqlTransaction = null;
                 try
                 {
-                    if (System.Data.ConnectionState.Closed == sqlConnection.State)
+                    if (System.Data.ConnectionState.Closed == connection.State)
                     {
-                        sqlConnection.Open();
+                        connection.Open();
                     }
 
-                    //sqlCommand = new SqlCommand(sql, sqlConnection);
-                    //sqlTransaction = sqlConnection.BeginTransaction();
-                    //sqlCommand.Transaction = sqlTransaction;
-                    //rv = sqlCommand.ExecuteNonQuery();
-                    //sqlTransaction.Commit();
-
-                    sqlCommand = new SqlCommand();
-                    sqlCommand.Connection = sqlConnection;
-                    sqlCommand.CommandType = CommandType.Text;
-                    sqlCommand.CommandText = sql;
-                    rv = sqlCommand.ExecuteNonQuery();
+                    command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = sql;
+                    rv = command.ExecuteNonQuery();
                 }
                 catch(Exception e)
                 {
@@ -116,11 +109,11 @@ namespace BekUtils.Database
             {
                 return null;
             }
-            using (sqlConnection = this.GetSqlServerConnection())
+            using (connection = this.GetSqlServerConnection())
             {
-                if (sqlConnection == null)
+                if (connection == null)
                     return null;
-                using (SqlDataAdapter da = new SqlDataAdapter(sql, sqlConnection))
+                using (SqlDataAdapter da = new SqlDataAdapter(sql, connection))
                 {
                     DataSet ds = new DataSet();
                     try
@@ -139,7 +132,7 @@ namespace BekUtils.Database
         {
             this.connectionString = null;
             //this.sqlCommand.Dispose();
-            this.sqlConnection.Dispose();
+            this.connection.Dispose();
         }
 
     }

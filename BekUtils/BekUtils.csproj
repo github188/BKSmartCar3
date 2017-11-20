@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Database\IDataProvider.cs" />
+    <Compile Include="Database\OleDbDataProvider.cs" />
     <Compile Include="Database\OracleDataProvider.cs" />
     <Compile Include="Database\SqlDataProvider.cs" />
     <Compile Include="Util\Base64Util.cs" />

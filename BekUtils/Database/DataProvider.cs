@@ -34,8 +34,7 @@ namespace BekUtils.Database
                     //return new OdbcDataProvider();
                     return null;
                 case DataProviderType.OleDbDataProvider:
-                    //return new OleDbDataProvider();
-                    return null;
+                    return new OleDbDataProvider(connectionString);
                 case DataProviderType.OracleDataProvider:
                     return new OracleDataProvider(connectionString);
                 case DataProviderType.SqlDataProvider:
