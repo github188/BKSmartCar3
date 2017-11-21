@@ -10,18 +10,18 @@ namespace CommonBase.Model
     /// </summary>
     public class GpsData
     {
-        public float sd;    //速度
-        public double jd;    //经度
-        public double wd;    //纬度
-        public float fxj;    //航向角
-        public float fyj;    //俯仰角
-        public float hgj;             //横滚角
-        public double gd;             //高度
-        public string clqy;            //车轮区域
-        public string ctqy;            //车体区域
-        public double qjjl;             //前进距离
-        public double htjl;             //后退距离
-        public string zt;          //GPS状态 
+        private float sd;    //速度
+        private double jd;    //经度
+        private double wd;    //纬度
+        private float fxj;    //航向角
+        private float fyj;    //俯仰角
+        private float hgj;             //横滚角
+        private double gd;             //高度
+        private string clqy;            //车轮区域
+        private string ctqy;            //车体区域
+        private double qjjl;             //前进距离
+        private double htjl;             //后退距离
+        private string zt;          //GPS状态 
 
         public GpsData()
         {

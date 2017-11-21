@@ -10,6 +10,9 @@ namespace CommonBase
     /// </summary>
     public class BaseDefine
     {
+        public static readonly int COMMON_VALUE_1024 = 1024;
+        public static readonly int COMMON_VALUE_512 = 512;
+
         public static readonly string DATA_TYPE_OBD_DT = @"OBD-DT";
         public static readonly string DATA_TYPE_OBD_INFO = @"OBD-INFO";
         public static readonly string DATA_TYPE_OBD_IO = @"OBD-IO";
@@ -37,14 +40,14 @@ namespace CommonBase
     public enum DwDefine
     {
         DW_N = 0,   //空档
-        DW_1,
-        DW_2,
-        DW_3,
-        DW_4,
-        DW_5,
+        DW_1 = 1,
+        DW_2 = 2,
+        DW_3 = 3,
+        DW_4 = 4,
+        DW_5 = 5,
         DW_D = 8,
-        DW_P,
-        DW_R,
+        DW_P = 9,
+        DW_R = 10,
         DW_OTHER = 100
     }
 }
