@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace BekUtils.Util
 {
@@ -35,6 +36,23 @@ namespace BekUtils.Util
             }
 
             return retArray;
+        }
+
+        //结束线程
+        public static void StopThread(Thread t)
+        {
+            try
+            {
+                t.Join(1000);
+
+                if (t.IsAlive)
+                {
+                    t.Abort();
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }
