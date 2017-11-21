@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleBase.cs" />
+    <Compile Include="ComSampleBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleGPS.cs" />
+    <Compile Include="SampleOBD.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BekUtils\BekUtils.csproj">

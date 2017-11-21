@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BaseDefine.cs" />
     <Compile Include="Model\ComParam.cs" />
+    <Compile Include="Model\GpsData.cs" />
     <Compile Include="Model\SampleData.cs" />
     <Compile Include="Model\SocketParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

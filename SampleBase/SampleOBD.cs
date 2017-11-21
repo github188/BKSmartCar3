@@ -2,37 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CommonBase;
-using CommonBase.Model;
 using BekUtils.Util;
 using log4net;
 using System.Threading;
+using CommonBase.Model;
+using CommonBase;
 
 namespace SampleBase
 {
     /// <summary>
-    ///  串口采样基类
-    /// </summary>
-    public class SampleBase
-    {
-        public virtual void SetCom(ComParam param) { }
-
-        public virtual void StartSample() { }
-
-        public virtual void StopSample() { }
-
-        public virtual void RecvData(ref SampleData sampleData) { }
-
-        //public virtual void GetStatus(ref DeviceSingle DeviceSingle_T) { }
-    }
-
-    /// <summary>
     /// OBD 采样
     /// </summary>
-    public class SampleOBD : SampleBase
+    public class SampleOBD : ComSampleBase
     {
         private ILog logger = Log.GetLogger();
-        private BekUtils.Util.Com.ComUtil com = null;
+        private BekUtils.Communication.ComUtil com = null;
         private Thread sampleThread = null;
         private SampleData sampleData = new SampleData();
         private string[] signalData = null;
@@ -55,7 +39,7 @@ namespace SampleBase
                 return;
             }
 
-            com = new BekUtils.Util.Com.ComUtil(param.Com, param.Rate, param.DataBits);
+            com = new BekUtils.Communication.ComUtil(param.Com, param.Rate, param.DataBits);
         }
 
         //开始采样
@@ -101,7 +85,7 @@ namespace SampleBase
                     data.Skd = sampleData.Skd;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 logger.ErrorFormat("catch an error : {0}", e.Message);
             }
@@ -429,7 +413,7 @@ namespace SampleBase
                                 if (tempSz != null && tempSz.Length >= 2)
                                 {
                                     #region 从协议取值
-                                    lock(lockObj)
+                                    lock (lockObj)
                                     {
                                         if ("1" == tempSz[1])
                                         {

@@ -6,7 +6,7 @@ using System.Text;
 using BekUtils.Util;
 using log4net;
 
-namespace BekUtils.Util.Com
+namespace BekUtils.Communication
 {
     public class ComUtil
     {
