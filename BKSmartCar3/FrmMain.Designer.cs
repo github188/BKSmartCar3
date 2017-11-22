@@ -1,6 +1,6 @@
 ﻿namespace BKSmartCar3
 {
-    partial class MainFrame
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.

@@ -11,9 +11,9 @@ using log4net;
 
 namespace BKSmartCar3
 {
-    public partial class MainFrame : Form
+    public partial class FrmMain : Form
     {
-        public MainFrame()
+        public FrmMain()
         {
             InitializeComponent();
 
