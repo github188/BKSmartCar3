@@ -12,6 +12,11 @@ namespace CommonBase
     {
         public static readonly int COMMON_VALUE_1024 = 1024;
         public static readonly int COMMON_VALUE_512 = 512;
+        public static readonly int COMMON_VALUE_SLEEP_2500 = 2500;
+        public static readonly int COMMON_VALUE_SLEEP_1000 = 1000;
+        public static readonly int COMMON_VALUE_SLEEP_200 = 200;
+
+        public static readonly int COMMON_VALUE_SAMPLE_MAX_COUNT = 10;  //采样数据保留最大条数
 
         public static readonly string DATA_TYPE_OBD_DT = @"OBD-DT";
         public static readonly string DATA_TYPE_OBD_INFO = @"OBD-INFO";

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B8D58FE-A43D-4344-A9E9-F5720A626677}</ProjectGuid>
+    <ProjectGuid>{7F497519-BCC3-4633-A5B6-339DF8FB7DB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleBase</RootNamespace>
-    <AssemblyName>SampleBase</AssemblyName>
+    <RootNamespace>JudgeBase</RootNamespace>
+    <AssemblyName>JudgeBase</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,11 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComSampleBase.cs" />
+    <Compile Include="JudgeBase.cs" />
+    <Compile Include="JudgeCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleBuffer.cs" />
-    <Compile Include="SampleGPS.cs" />
-    <Compile Include="SampleOBD.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BekUtils\BekUtils.csproj">
@@ -58,6 +56,10 @@
     <ProjectReference Include="..\CommonBase\CommonBase.csproj">
       <Project>{357eae44-81ae-468e-a403-9fdaf3538b53}</Project>
       <Name>CommonBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleBase\SampleBase.csproj">
+      <Project>{4b8d58fe-a43d-4344-a9e9-f5720a626677}</Project>
+      <Name>SampleBase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -87,7 +87,7 @@ namespace SampleBase
                         if (null == socket || !socket.Connected)
                         {
                             logger.ErrorFormat("GPS Thread ConnectSocket faild, retry after sleep");
-                            Thread.Sleep(2500);
+                            Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_2500);
                             continue;
                         }
                     }
@@ -96,7 +96,7 @@ namespace SampleBase
                     if (!tcpClient.RecvData(socket, -1, ref recvBuf))
                     {
                         logger.ErrorFormat("GPS Thread RecvData faild, retry after sleep");
-                        Thread.Sleep(2500);
+                        Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_2500);
                         continue;
                     }
 
@@ -182,6 +182,8 @@ namespace SampleBase
                 {
                     logger.ErrorFormat("catch an error : {0}", e.Message);
                 }
+
+                Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_200);
             }
         }
     }

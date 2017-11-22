@@ -103,7 +103,7 @@ namespace SampleBase
                     if (-1 == nRet)
                     {
                         logger.ErrorFormat("ConnectSerialPort faild, retry after sleep");
-                        Thread.Sleep(2500);
+                        Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_2500);
                         continue;
                     }
                     else if (-2 == nRet)
@@ -123,7 +123,7 @@ namespace SampleBase
                 if (!string.IsNullOrEmpty(errorMsg))
                 {
                     logger.ErrorFormat(errorMsg);
-                    Thread.Sleep(200);
+                    Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_200);
                     continue;
                 }
 
@@ -499,7 +499,7 @@ namespace SampleBase
                     }
                 }
 
-                Thread.Sleep(200);
+                Thread.Sleep(BaseDefine.COMMON_VALUE_SLEEP_200);
 
             }
         }
